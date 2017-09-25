@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <!-- This is used by the StateManager's replicator. -->
+  <Section Name="ReplicatorConfig">
+    <Parameter Name="ReplicatorEndpoint" Value="ReplicatorEndpoint" />
+  </Section>
+  <!-- This is used for securing StateManager's replication traffic. -->
+  <Section Name="ReplicatorSecurityConfig" />
+  <!-- Change the section name to match your service class name-->
+  <Section Name="Stateful1.Settings">
+    <!-- We are interested in the Azure backup mode since we are backing up to blob storage-->
+    <Parameter Name="BackupMode" Value="Azure" />
+    
+  </Section>
+  <!-- Change the section name to match your service class name-->
+  <Section Name="Stateful1.BackupSettings.Azure">
+    <!-- This is the name of your Azure storage account-->
+    <Parameter Name="BackupAccountName" Value="[storage-account-name]" />
+    <!-- This is the primary key of your storage account-->
+    <Parameter Name="PrimaryKeyForBackupTestAccount" Value="[Your-storage-account-primary-key]" />
+    <!-- This is the endpoint for your storage accounts blob storage-->
+    <Parameter Name="BlobServiceEndpointAddress" Value="https://[your-storage-account-name].blob.core.windows.net/" />
+    <!-- This is the directory where all your backup files will be downloaded and extracted to-->
+    <!-- Make sure this directory exists on your nodes but not too deep in a hierarchy, otherwise you can run-->
+    <!-- in to path limitations-->
+    <!-- No code exists in this sample app to automatically create this directory for you, but it could be easily added-->
+    <Parameter Name="TempRestoreDirectory" Value="C:\myrestore"/>
+  </Section>
+
+</Settings>
