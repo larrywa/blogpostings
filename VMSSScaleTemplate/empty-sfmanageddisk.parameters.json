@@ -1,0 +1,64 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "clusterLocation": {
+      "value": "REGION"
+    },
+    "clusterName": {
+      "value": "CLUSTERNAME"
+    },
+    "adminUserName": {
+      "value": "RDP-LOGIN-NAME"
+    },
+    "adminPassword": {
+      "value": "RDP-PASSWORD"
+    },
+    "vmImagePublisher": {
+      "value": "MicrosoftWindowsServer"
+    },
+    "vmImageOffer": {
+      "value": "WindowsServer"
+    },
+    "vmImageSku": {
+      "value": "2016-Datacenter"
+    },
+    "vmImageVersion": {
+      "value": "latest"
+    },
+    "loadBalancedAppPort1": {
+      "value": 80
+    },
+    "loadBalancedAppPort2": {
+      "value": 8081
+    },
+    "clusterCertificateStorevalue": {
+      "value": "My"
+    },
+    "clusterCertificateThumbprint": {
+      "value": "YOUR-CERTIFICATE-THUMBPRINT"
+    },
+    "sourceVaultvalue": {
+      "value": "YOUR-RESOURCE-ID LIKE /subscriptions/SUBSCRIPTIONID/resourceGroups/KEYVAULTNAME/providers/Microsoft.KeyVault/vaults/KEYVAULTNAME"
+    },
+    "clusterCertificateUrlvalue": {
+      "value": "VAULT-SECRET-URL"
+    },
+    "clusterProtectionLevel": {
+      "value": "EncryptAndSign"
+    },
+    "storageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "supportLogStorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "applicationDiagnosticsStorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "nt0InstanceCount": {
+      "value": 5
+    }
+  }
+}
+
