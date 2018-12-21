@@ -35,7 +35,7 @@ $StorageInfo = @{
 
 # backup schedule info, backup every 10 minutes
 $ScheduleInfo = @{
-    Interval = 'PT1M'
+    Interval = 'PT10M'
     ScheduleKind = 'FrequencyBased'
 }
 
