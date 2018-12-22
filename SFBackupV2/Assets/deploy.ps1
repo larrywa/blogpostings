@@ -38,10 +38,10 @@ param(
  $resourceGroupLocation,
 
  [string]
- $templateFilePath = "ServiceFabricClusterCopy.json",
+ $templateFilePath = "ServiceFabricCluster.json",
 
  [string]
- $parametersFilePath = "ServiceFabricCluster.parametersCopy.json"
+ $parametersFilePath = "ServiceFabricCluster.parameters.json"
 )
 
 <#
