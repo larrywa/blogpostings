@@ -30,7 +30,7 @@
       "value": "Datacenter-Core-1709-with-Containers-smalldisk"
     },
     "osSkuName": {
-      "value": "Standard_D1_v2"
+      "value": "Standard_D2_v2"
     },
     "numInstances": {
       "value": 3

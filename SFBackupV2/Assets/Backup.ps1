@@ -2,29 +2,13 @@
 # This script is used to create a backup policy and then enabled the periodic backup policy
 # ************************************************************************************
 
-$useAD = $False  #Used to determine which way to connect to secure cluster
-$appName = "Voting" #The name of the service fabric application being backed up
-$validCert = $False #Leave false if you are in dev/test, set to true when using a real valid cert with a root
-$storageConnString = "" #Your storage account connection string
-$backupPolicyName = "" #The name of your backup policy
-$clusterName = "" #your cluster name, ie, <clustername>.<region>.cloudapp.azure.com
-$certThumbprint = "" #your certificate thumbprint
-$certName = "" #Your certificate name. You only need this if you are NOT using Azure AD to access the SF explorer
-$containerName = "" #The name of the storage account container your backup data will be located in
+$appName = 'Voting' #The name of the service fabric application being backed up
+$storageConnString = '' #Your storage account connection string
+$backupPolicyName = "myvotebackup" #The name of your backup policy
+$clusterName = '' #your cluster name, ie, <clustername>.<region>.cloudapp.azure.com
+$certThumbprint = '' #your certificate thumbprint
+$containerName = '' #The name of the storage account container your backup data will be located in
 
-
-# Connection to the cluster
-if($useAD)
-{
-#If you are using ActiveDirectory, meaning, you have setup Azure AD for SF Explorer use for Admin and Readonly access
-$ConnectArgs = @{  ConnectionEndpoint = $clusterName + ':19000'; AzureActiveDirectory = $True;  ServerCertThumbprint = $certThumbprint   }
-}
-else
-{
-# If you are not using ActiveDirectory, use this line of code
-$ConnectArgs = @{  ConnectionEndpoint = $clusterName + ':19000'; X509Credential = $True;  StoreLocation = 'CurrentUser';  StoreName = "My";  FindType = 'FindByThumbprint';  FindValue = $certThumbprint; ServerCertThumbprint = $certThumbprint   }
-}
-Connect-ServiceFabricCluster @ConnectArgs
 
 #start setting up storage info
 $StorageInfo = @{
@@ -35,8 +19,13 @@ $StorageInfo = @{
 
 # backup schedule info, backup every 10 minutes
 $ScheduleInfo = @{
-    Interval = 'PT10M'
+    Interval = 'PT5M'
     ScheduleKind = 'FrequencyBased'
+}
+
+$retentionPolicy = @{
+    RetentionPolicyType = 'Basic'
+    RetentionDuration = 'P10D'
 }
 
 # backup policy parameters
@@ -46,6 +35,8 @@ $BackupPolicy = @{
     MaxIncrementalBackups = 5
     Schedule = $ScheduleInfo
     Storage = $StorageInfo
+    RetentionPolicy = $retentionPolicy
+    
 }
 
 $body = (ConvertTo-Json $BackupPolicy)
@@ -87,6 +78,7 @@ if (-not($validCert))
     [System.Net.ServicePointManager]::ServerCertificateValidationCallback = [dummy]::GetDelegate()
 }
 
+
 #===========================================
 # Invoke to create the backup policy
 #===========================================
@@ -106,9 +98,4 @@ $body = (ConvertTo-Json $BackupPolicyReference)
 $url = "https://" + $clusterName + ":19080/Applications/" + $appName + "/$/EnableBackup?api-version=6.4"
 
 Invoke-WebRequest -Uri $url -Method Post -Body $body -ContentType 'application/json' -CertificateThumbprint $certThumbprint
-
-
-# Update the backup policy
-#$url = "https://" + $clusterName + ":19080/BackupRestore/BackupPolicies/" + $backupPolicyName + "/$/Update?api-version=6.4"
-#Invoke-WebRequest -Uri $url -Method Post -Body $body -ContentType 'application/json' -CertificateThumbprint $certThumbprint
 
