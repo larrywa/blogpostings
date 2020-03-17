@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "SFContainerLogs", "SFContainerLogs\SFContainerLogs.sfproj", "{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}.Debug|x64.ActiveCfg = Debug|x64
+		{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}.Debug|x64.Build.0 = Debug|x64
+		{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}.Debug|x64.Deploy.0 = Debug|x64
+		{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}.Release|x64.ActiveCfg = Release|x64
+		{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}.Release|x64.Build.0 = Release|x64
+		{B111B7A0-9DF9-44BF-AEF7-7AA5E07E2949}.Release|x64.Deploy.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {542D19FF-366E-41C0-AD26-E2AA14823B5C}
+	EndGlobalSection
+EndGlobal
